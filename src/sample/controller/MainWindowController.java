@@ -1,6 +1,6 @@
 package sample.controller;
 
-import javafx.beans.property.Property;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -13,8 +13,6 @@ import sample.model.EmailMessage;
 import sample.model.EmailTreeItem;
 import sample.model.SizeInteger;
 import sample.view.ViewFactory;
-
-import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
