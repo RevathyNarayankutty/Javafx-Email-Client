@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="loginWindows.jnlp">
+  <information>
+    <title>JavaFxTEST</title>
+    <vendor>Unknown</vendor>
+    <description>JavaFxTEST</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="activation.jar" size="124332" download="eager" />
+    <jar href="javax.mail.jar" size="659033" download="eager" />
+    <jar href="loginWindows.jar" size="60953" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="600" height="400" main-class="sample.Main"  name="JavaFxTEST" />
+  <update check="background"/>
+</jnlp>
