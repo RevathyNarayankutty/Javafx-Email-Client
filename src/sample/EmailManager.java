@@ -21,6 +21,8 @@ public class EmailManager {
     private EmailTreeItem<String> selectedFolder;
     private ObservableList<EmailAccount> emailAccounts= FXCollections.observableArrayList();
     private IconResolver iconResolver= new IconResolver();
+    private List<Folder> folderList= new ArrayList<Folder>();
+    private FolderUpdaterService folderUpdaterService;
 
     public ObservableList<EmailAccount> getEmailAccounts(){
         return emailAccounts;
@@ -42,14 +44,12 @@ public class EmailManager {
         this.selectedFolder = selectedFolder;
     }
 
-    private FolderUpdaterService folderUpdaterService;
-
     private EmailTreeItem<String> foldersRoot= new EmailTreeItem<>("");
+
     public EmailTreeItem<String> getFoldersRoot() {
         return foldersRoot;
     }
 
-    private List<Folder> folderList= new ArrayList<Folder>();
     public List<Folder> getFolderList(){
         return this.folderList;
     }

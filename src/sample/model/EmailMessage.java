@@ -6,7 +6,10 @@ import javafx.beans.property.SimpleStringProperty;
 
 import javax.mail.Address;
 import javax.mail.Message;
+import javax.mail.internet.MimeBodyPart;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class EmailMessage {
 
@@ -17,46 +20,70 @@ public class EmailMessage {
     private SimpleObjectProperty<Date> date;
     private boolean isRead;
     private Message message;
+    private List<MimeBodyPart> attachmentList = new ArrayList<MimeBodyPart>();
+    private boolean hasAttachments= false;
 
-    public EmailMessage(String subject, String sender, String recipient, int size, Date date, boolean isRead, Message message){
-        this.subject= new SimpleStringProperty(subject);
-        this.sender= new SimpleStringProperty(sender);
-        this.recipient= new SimpleStringProperty(recipient);
-        this.size= new SimpleObjectProperty<SizeInteger> (new SizeInteger(size));
-        this.date= new SimpleObjectProperty<>(date);
-        this.isRead= isRead;
-        this.message= message;
+
+    public EmailMessage(String subject, String sender, String recipient, int size, Date date, boolean isRead, Message message) {
+        this.subject = new SimpleStringProperty(subject);
+        this.sender = new SimpleStringProperty(sender);
+        this.recipient = new SimpleStringProperty(recipient);
+        this.size = new SimpleObjectProperty<SizeInteger>(new SizeInteger(size));
+        this.date = new SimpleObjectProperty<>(date);
+        this.isRead = isRead;
+        this.message = message;
     }
 
-    public String getSubject(){
+    public boolean hasAttachments(){
+        return hasAttachments;
+    }
+
+    public List<MimeBodyPart> getAttachmentList() {
+        return attachmentList;
+    }
+
+    public String getSubject() {
         return this.subject.get();
     }
 
-    public String getSender(){
+    public String getSender() {
         return this.sender.get();
     }
 
-    public String getRecipient(){
+    public String getRecipient() {
         return this.recipient.get();
     }
 
-    public SizeInteger getSize(){
+    public SizeInteger getSize() {
         return this.size.get();
     }
 
-    public Date getDate(){
+    public Date getDate() {
         return this.date.get();
     }
 
-    public boolean isRead(){
+    public boolean isRead() {
         return isRead;
     }
 
-    public void setRead(boolean read){
-        isRead= read;
+    public void setRead(boolean read) {
+        isRead = read;
     }
 
-    public Message getMessage(){
+    public Message getMessage() {
         return this.message;
     }
+
+    public void addAttachment(MimeBodyPart mbp) {
+        hasAttachments = true;
+        attachmentList.add(mbp);
+        try {
+            System.out.println("Added attachments" +mbp.getFileName());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
+
+
+

@@ -28,6 +28,7 @@ public class EmailTreeItem<String> extends TreeItem<String> {
     }
 
     public void addEmail(Message message) throws MessagingException {
+
         EmailMessage emailMessage= fetchMessage(message);
         emailMessages.add(emailMessage);
     }
