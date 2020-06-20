@@ -1,6 +1,5 @@
 package sample.controller;
 
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -47,25 +46,11 @@ public class MainWindowController extends BaseController implements Initializabl
 
     private MenuItem markUnreadMenuItem= new MenuItem("Mark as unread");
     private MenuItem deleteMessageMenuItem= new MenuItem("Delete message");
+    private MenuItem showMessageDetailMenuItem= new MenuItem("View details");
+
 
     public MainWindowController(EmailManager emailManager, ViewFactory viewFactory, String fxmlName) {
         super(emailManager, viewFactory, fxmlName);
-    }
-
-    @FXML
-    void addAccountAction(){
-        viewFactory.showLoginWindow();
-    }
-
-    @FXML
-    void composeMessageAction(){
-        viewFactory.showComposeMessageWindow();
-    }
-
-    @FXML
-    void optionsAction(){
-        System.out.println("Options clicked");
-        viewFactory.showOptionWindow();
     }
 
     @Override
@@ -80,6 +65,21 @@ public class MainWindowController extends BaseController implements Initializabl
         setupContextMenu();
     }
 
+    @FXML
+    void addAccountAction(){
+        viewFactory.showLoginWindow();
+    }
+
+    @FXML
+    void composeMessageAction(){
+        viewFactory.showComposeMessageWindow();
+    }
+
+    @FXML
+    void optionsAction(){
+        viewFactory.showOptionWindow();
+    }
+
     private void setupContextMenu() {
         markUnreadMenuItem.setOnAction(event -> {
             emailManager.setUnread();
@@ -88,6 +88,10 @@ public class MainWindowController extends BaseController implements Initializabl
         deleteMessageMenuItem.setOnAction(event -> {
             emailManager.deleteSelectedMessage();
             emailsWebView.getEngine().loadContent("");
+        });
+
+        showMessageDetailMenuItem.setOnAction(event -> {
+            viewFactory.showEmailDetailsWindow();
         });
     }
 
@@ -150,7 +154,7 @@ public class MainWindowController extends BaseController implements Initializabl
         sizeCol.setCellValueFactory((new PropertyValueFactory<EmailMessage, SizeInteger>("size")));
         dateCol.setCellValueFactory((new PropertyValueFactory<EmailMessage, Date>("date")));
 
-        emailsTableView.setContextMenu(new ContextMenu(markUnreadMenuItem, deleteMessageMenuItem));
+        emailsTableView.setContextMenu(new ContextMenu(markUnreadMenuItem, deleteMessageMenuItem, showMessageDetailMenuItem));
 
     }
 

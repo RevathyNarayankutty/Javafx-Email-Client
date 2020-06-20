@@ -34,8 +34,6 @@ public class LoginWindowController extends BaseController implements Initializab
 
     @FXML
     void clickButton() {
-        System.out.println("Button clicked");
-
         if(fieldsAreValid()){
             EmailAccount emailAccount= new EmailAccount(emailAddressField.getText(), passwordField.getText());
             LoginService loginService= new LoginService(emailAccount, emailManager); //Starting a service

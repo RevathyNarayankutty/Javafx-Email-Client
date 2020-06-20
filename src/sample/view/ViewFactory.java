@@ -24,7 +24,6 @@ public class ViewFactory {
 
     //This constructor will pass the View events to the Email manager which will do all the work.
     public ViewFactory(EmailManager emailManager) {
-
         this.emailManager = emailManager;
         activeStages= new ArrayList<Stage>();
     }
@@ -58,7 +57,6 @@ public class ViewFactory {
 
     //To generate a login stage:
     public void showLoginWindow(){
-        System.out.println("Login Window called");
         //The following code is to get the fxml controller to each .fxml files without using the inbuilt code.
         //Gets the login page (LoginWindow.fxml will be called)
         //This approach explicitly gets the fx:controller="path"
@@ -68,21 +66,23 @@ public class ViewFactory {
 
     //To interact between multiple stages:
     public void showMainWindow(){
-        System.out.println("Main Window called");
         BaseController controller= new MainWindowController(emailManager, this, "MainWindow.fxml");
         initializeStage(controller);
         mainViewInitialized= true;
     }
 
     public void showOptionWindow(){
-        System.out.println("Option Window called");
         BaseController controller= new OptionWindowController(emailManager, this, "OptionWindow.fxml");
         initializeStage(controller);
     }
 
     public void showComposeMessageWindow(){
-        System.out.println("composeMessage Window called");
         BaseController controller= new ComposeMessageController(emailManager, this, "ComposeMessageWindow.fxml");
+        initializeStage(controller);
+    }
+
+    public void showEmailDetailsWindow(){
+        BaseController controller= new EmailDetailsController(emailManager, this, "EmailDetailWindow.fxml");
         initializeStage(controller);
     }
 
